@@ -27,6 +27,7 @@ parser.add_argument("--data", help="full path to data file", type=str)
 parser.add_argument("--output_path", help="path to output csv file", type=str)
 parser.add_argument("--output_tag", help="name tag for output file", type=str)
 parser.add_argument("--node_type", help="node type to evaluate", type=str)
+parser.add_argument("--save_trajectories_dir", help="path where to save predicted trajectories", type=str, default='../../../trajectories')
 args = parser.parse_args()
 
 
@@ -151,7 +152,8 @@ if __name__ == "__main__":
         for i, scene in enumerate(scenes):
             print(f"---- Evaluating Scene {i + 1}/{len(scenes)}")
             for t in tqdm(range(0, scene.timesteps, 10)):
-                save_dir = '../../../trajectory_reward/results/trajectories/trajectron_nocol'
+                # save_dir = '../../../trajectory_reward/results/trajectories/trajectron_nocol'
+                save_dir = f'{args.save_trajectories_dir}'
                 SEQUENCE_NAMES = {
                         'eth_test_0': 'biwi_eth',
                         'hotel_test_0': 'biwi_hotel',
@@ -162,20 +164,16 @@ if __name__ == "__main__":
                 }
                 sequence_name = SEQUENCE_NAMES[f"{scene.name}_{i}"]
                 timesteps = np.arange(t, t + 10)
-                predictions, num_colliding_samples = get_noncolliding_samples(eval_stg,
-                                                                              scene,
-                                                                              timesteps,
-                                                                              ph,
-                                                                              scene.dt,
-                                                                              max_hl,
-                                                                              prune_ph_to_future=True,
-                                                                              num_samples=20,
-                                                                              min_history_timesteps=7,
-                                                                              min_future_timesteps=12,
-                                                                              z_mode=False,
-                                                                              gmm_mode=False,
-                                                                              full_dist=False,
-                                                                              collisions_ok=False,)
+                predictions = eval_stg.predict(scene,
+                                               timesteps,
+                                               ph,
+                                               num_samples=20,
+                                               min_history_timesteps=7,
+                                               min_future_timesteps=12,
+                                               z_mode=False,
+                                               gmm_mode=False,
+                                               full_dist=False)
+
                 if predictions is None:
                     continue
 
@@ -184,8 +182,6 @@ if __name__ == "__main__":
                                            max_hl,
                                            ph,
                                            prune_ph_to_future=True,)
-
-                import ipdb; ipdb.set_trace()
 
                 batch_error_dict = evaluation.compute_batch_statistics(predictions,
                                                                        scene.dt,

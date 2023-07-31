@@ -269,10 +269,8 @@ def save_trajectron_prediction(predictions, sequence_name, save_dir,
     formatted_sampled_trajectories = format_trajectron_trajectories(
         prediction_dict, frame_scale=frame_scale, start_timestep=start_index)
 
-    print("formatted_sampled_trajectories:", formatted_sampled_trajectories)
-    import ipdb; ipdb.set_trace()
     if formatted_sampled_trajectories is None:
-        print("None!")
+        print("No trajectories saved in this sequence!")
         return
     save_trajectron_trajectories(formatted_sampled_trajectories,
                                  formatted_obs_trajectories,
