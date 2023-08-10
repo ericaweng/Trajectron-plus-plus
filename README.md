@@ -2,7 +2,7 @@ To save predicted trajectories to file for evaluation using our evaluation syste
 please follow the original steps (included below) to set up the Trajectron++
 environment, as well as the data preprocessing steps for the pedestrian datasets.
 
-Then, from the `{root}/Trajectron-plus-plus/experiments/pedestrians` directory, run:
+Then, from `{joint_metrics_matter_root}/Trajectron-plus-plus/experiments/pedestrians`, run:
 
 `python evaluate.py --model <model directory> --checkpoint 100 --data ../processed/<dataset>_test.pkl --output_path results --output_tag <dataset>_12 --node_type PEDESTRIAN`
 
