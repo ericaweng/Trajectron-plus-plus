@@ -6,7 +6,7 @@ And from `{root}/Trajectron-plus-plus/experiments/pedestrians`, run:
 `python evaluate.py --model <model directory> --checkpoint 100 --data ../processed/<dataset>_test.pkl --output_path results --output_tag <dataset>_12 --node_type PEDESTRIAN`
 where `<model directory>` is `../../../pre_trained_models/trajectron/<dataset>_dyn/`
 
-The trajectory files will save to `{root}/trajectories`. You can specify a different output path by changing the `--save_trajectories_path` argument.
+The trajectory files will save to `{root}/results/trajectories/trajectron`. You can specify a different output path by changing the `--save_trajectories_path` argument.
 
 ____________________________________________________
 

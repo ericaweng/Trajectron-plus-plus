@@ -27,7 +27,7 @@ parser.add_argument("--data", help="full path to data file", type=str)
 parser.add_argument("--output_path", help="path to output csv file", type=str)
 parser.add_argument("--output_tag", help="name tag for output file", type=str)
 parser.add_argument("--node_type", help="node type to evaluate", type=str)
-parser.add_argument("--save_trajectories_dir", help="path where to save predicted trajectories", type=str, default='../../../trajectories')
+parser.add_argument("--save_trajectories_path", help="path where to save predicted trajectories", type=str, default='../../../results/trajectories/trajectron')
 args = parser.parse_args()
 
 
@@ -153,7 +153,7 @@ if __name__ == "__main__":
             print(f"---- Evaluating Scene {i + 1}/{len(scenes)}")
             for t in tqdm(range(0, scene.timesteps, 10)):
                 # save_dir = '../../../trajectory_reward/results/trajectories/trajectron_nocol'
-                save_dir = f'{args.save_trajectories_dir}'
+                save_dir = f'{args.save_trajectories_path}'
                 SEQUENCE_NAMES = {
                         'eth_test_0': 'biwi_eth',
                         'hotel_test_0': 'biwi_hotel',
