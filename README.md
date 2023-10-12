@@ -1,10 +1,12 @@
 To save predicted trajectories to file for evaluation using our evaluation system, 
-please follow the original steps (below) to set up the Trajectron++
+please follow the original steps (included below) to set up the Trajectron++
 environment, as well as the data preprocessing steps for the pedestrian datasets.
 
-And from `{root}/Trajectron-plus-plus/experiments/pedestrians`, run:
-`python evaluate.py --model <model directory> --checkpoint 100 --data ../processed/<dataset>_test.pkl --output_path results --output_tag <dataset>_12 --node_type PEDESTRIAN`
-where `<model directory>` is `../../../pre_trained_models/trajectron/<dataset>_dyn/`
+Then, from `{joint_metrics_matter_root}/Trajectron-plus-plus/experiments/pedestrians`, run:
+
+```python evaluate.py --model <model directory> --checkpoint 100 --data ../processed/<dataset>_test.pkl --output_path results --output_tag <dataset>_12 --node_type PEDESTRIAN```
+
+If you have already saved all pretrained models, then `<model directory>` is `../../../pre_trained_models/trajectron/<dataset>_dyn/`.
 
 The trajectory files will save to `{root}/results/trajectories/trajectron`. You can specify a different output path by changing the `--save_trajectories_path` argument.
 
